@@ -15,6 +15,9 @@ interface SearchHistoryItem {
 export function useSearchHistory() {
     const [history, setHistory] = useLocalStorage<SearchHistoryItem[]>("search-history", []);
     const queryClient = useQueryClient()
+
+
+    // reading the history from the localstorage this custom hook just reads the history and returns it
     const historyQuery = useQuery({
         queryKey: ["search-history"],
         queryFn: () => history,
@@ -29,7 +32,7 @@ export function useSearchHistory() {
                 searchedAt: Date.now(),
             }
 
-            const filteredHistory = history.filter((item) => !(item.lat === search.lat && item.lon === search.lon))
+            const filteredHistory = history.filter((item) => !(item.lat === search.lat && item.lon === search.lon)) // filtering the histor for avoiding duplication of searches 
 
             const newHistory = [newSearch, ...filteredHistory].slice(0, 10);
 
@@ -38,7 +41,8 @@ export function useSearchHistory() {
         },
         onSuccess: (newHistory) => {
             queryClient.setQueryData(["search-history"], newHistory)
-        }
+        },
+
     })
 
 

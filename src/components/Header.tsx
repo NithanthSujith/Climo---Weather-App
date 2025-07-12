@@ -10,7 +10,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur py-2 supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-2">
         <Link to={"/"}>
-          <img src={isDark ?"./public/logo2.png" : "./public/logo1.png" } alt="Climo Logo" className="h-14" />
+          <img src={isDark ?"/logo2.png" : "/logo1.png" } alt="Climo Logo" className="h-14" />
         </Link>
 
         <div className="flex gap-4">
